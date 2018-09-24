@@ -33,7 +33,7 @@
                 <label for="games[]" class="control-label">Games</label>
                 <select multiple type="text" name="games[]" class="form-control select2" data-placeholder="Select Games" required>
                     @foreach($games as $game)
-                    <option selected="{{$game->selected? 'true': 'false'}}" value="{{$game->id}}">{{$game->name}}</option>
+                    <option {{$game->selected? 'selected="selected"': ''}} value="{{$game->id}}">{{$game->name}}</option>
                     @endforeach
                 </select>
             </div>

@@ -21,9 +21,9 @@ class CreatePurchasesTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
-            $table->string('transaction_id');
-            $table->string('phone');
-            $table->string('payment_date');
+            $table->string('transaction_id')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('payment_date')->nullable();
             $table->string('bundle_name');
             $table->timestamps();
         });
