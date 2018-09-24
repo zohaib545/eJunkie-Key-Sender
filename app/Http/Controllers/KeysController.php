@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Game;
 use App\GameKey;
 use DB;
+use Illuminate\Http\Request;
 
 class KeysController extends Controller
 {
@@ -62,6 +62,17 @@ class KeysController extends Controller
     {
         $game_key = GameKey::find($request->id);
         $game_key->delete();
+        return redirect()->back();
+    }
+
+    /**
+     * delete_all
+     * Delete all keys of a game
+     */
+    public function delete_all(Request $request)
+    {
+        $game = Game::find($request->id);
+        $game->keys()->delete();
         return redirect()->back();
     }
 }

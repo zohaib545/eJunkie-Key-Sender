@@ -18,21 +18,22 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Add Bundle</h3>
+        <h3 class="box-title">Edit Bundle</h3>
     </div>
     <!-- /.box-header -->
     <form action="{{url('bundles')}}" method="POST">
         @csrf
+        @method('PUT')
         <div class="box-body">
             <div class="form-group">
                 <label for="name" class="control-label">Name <span class="text-danger">*</span></label>
-                <input type="text" name="name" class="form-control" required>
+                <input type="text" name="name" class="form-control" value="{{$bundle->name}}" required>
             </div>
             <div class="form-group">
                 <label for="games[]" class="control-label">Games</label>
                 <select multiple type="text" name="games[]" class="form-control select2" data-placeholder="Select Games" required>
                     @foreach($games as $game)
-                    <option value="{{$game->id}}">{{$game->name}}</option>
+                    <option selected="{{$game->selected? 'true': 'false'}}" value="{{$game->id}}">{{$game->name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -42,6 +43,7 @@
             <button type="reset" class="btn btn-default">Cancel</button>
             <button type="submit" class="btn btn-info pull-right">Submit</button>
         </div>
+        <input type="hidden" name="id" value="{{$bundle->id}}">
     </form>
 </div>
 <!-- /.box -->

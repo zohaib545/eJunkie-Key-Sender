@@ -23,6 +23,12 @@
             <a href="{{url('games/'.$game->id.'/keys/upload')}}" class="btn btn-primary">
                 Upload Game Keys <i class="fa fa-upload"></i>
             </a>
+            <form action="{{url('games/'.$game->id.'/keys/all')}}" class="d-inline-block delete-form" method="post">
+                @method('DELETE')
+                @csrf
+                <input type="hidden" name="id" value="{{$game->id}}">
+                <button type="submit" class="btn btn-danger">Delete All Keys</button>
+            </form>
         </div>
     </div>
     <!-- /.box-header -->

@@ -1,7 +1,7 @@
 @extends('theme.master')
-@section('page_title', 'Games')
-@section('page_heading', 'Games')
-@section('page_subheading', 'BunchKeys Games')
+@section('page_title', 'Packages')
+@section('page_heading', 'Packages')
+@section('page_subheading', 'BunchKeys Packages')
 
 @section('page_styles')
 <link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
@@ -10,17 +10,17 @@
 @section('breadcrumbs')
 <ol class="breadcrumb">
     <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Games</li>
+    <li class="active">Packages</li>
 </ol>
 @stop()
 
 @section('content')
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Games</h3>
+        <h3 class="box-title">Packages</h3>
         <div class="box-tools">
-            <a href="{{url('games/create')}}" class="btn btn-primary">
-                Add New Game <i class="fa fa-plus"></i>
+            <a href="{{url('packages/create')}}" class="btn btn-primary">
+                Add New Package <i class="fa fa-plus"></i>
             </a>
         </div>
     </div>
@@ -29,27 +29,26 @@
         <table id="datatable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Total Keys</th>
-                    <th>Unused Keys</th>
+                    <th>Bundle</th>
+                    <th>Quantity</th>
+                    <th>Keygen Link</th>
                     <th>Created</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($games as $game_key => $game)
+                @foreach($packages as $package)
                 <tr>
-                    <td>{{$game->name}}</td>
-                    <td>{{$game->keys->count()}}</td>
-                    <td>{{$game->unused_keys->count()}}</td>
-                    <td>{{$game->created_at}}</td>
+                    <td>{{$package->bundle->name}}</td>
+                    <td>{{$package->quantity}}</td>
+                    <td>{{url('keygen')."?unique_id=$package->package_hash"}}</td>
+                    <td>{{$package->created_at}}</td>
                     <td class="fit">
-                        <a href="{{url('games/'.$game->id.'/keys')}}" class="btn btn-primary">Manage Keys</a>
-                        <a href="{{url('games/'.$game->id.'/edit')}}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                        <a href="{{url('packages/'.$package->id.'/edit')}}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
                         <form action="" method="post" class="d-inline-block delete-form">
                             @csrf
                             @method('DELETE')
-                            <input type="hidden" name="id" value="{{$game->id}}">
+                            <input type="hidden" name="id" value="{{$package->id}}">
                             <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
                         </form>
                     </td>

@@ -19,7 +19,7 @@
     <div class="box-header">
         <h3 class="box-title">Bundles</h3>
         <div class="box-tools">
-            <a href="{{url('games/create')}}" class="btn btn-primary">
+            <a href="{{url('bundles/create')}}" class="btn btn-primary">
                 Add New Bundle <i class="fa fa-plus"></i>
             </a>
         </div>
@@ -46,7 +46,7 @@
                         <form action="" method="post" class="d-inline-block delete-form">
                             @csrf
                             @method('DELETE')
-                            <input type="hidden" name="id" value="{{$game->id}}">
+                            <input type="hidden" name="id" value="{{$bundle->id}}">
                             <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
                         </form>
                     </td>
