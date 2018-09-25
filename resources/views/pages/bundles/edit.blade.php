@@ -37,6 +37,10 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group">
+                <label for="counter" class="control-label">Counter <span class="text-danger">*</span></label>
+                <input type="number" name="counter" class="form-control" value="{{$bundle->bundles_sold}}" required>
+            </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">

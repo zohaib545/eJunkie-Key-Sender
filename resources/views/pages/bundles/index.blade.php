@@ -29,6 +29,7 @@
         <table id="datatable" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Sold</th>
                     <th>Created</th>
@@ -38,6 +39,7 @@
             <tbody>
                 @foreach($bundles as $bundle)
                 <tr>
+                    <td>{{$bundle->id}}</td>
                     <td>{{$bundle->name}}</td>
                     <td>{{$bundle->bundles_sold}}</td>
                     <td>{{$bundle->created_at}}</td>

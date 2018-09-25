@@ -14,6 +14,7 @@
 Route::get('login', 'UserController@login_index')->name('login')->middleware('guest');
 Route::get('logout', 'UserController@logout');
 Route::post('login', 'UserController@login');
+Route::get('counter', 'CounterController@get_counter');
 Route::post('keygen', 'KeygenController@send_keys')->middleware('ejunkie');
 
 Route::middleware('auth')->group(function () {

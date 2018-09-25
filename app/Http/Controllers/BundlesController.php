@@ -80,6 +80,7 @@ class BundlesController extends Controller
     {
         $bundle = Bundle::find($request->id);
         $bundle->name = $request->name;
+        $bundle->bundles_sold = $request->counter;
         $bundle->save();
         $bundle->bundle_games()->delete();
         foreach ($request->games as $game) {
