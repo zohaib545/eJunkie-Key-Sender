@@ -27,6 +27,7 @@ class DownloadsController extends Controller
      */
     public function download_unused_codes(Request $request)
     {
+        $game = Game::find($request->game);
         $gameKeys = GameKey::select('key')->where([['game_id', '=', $request->game], ['is_used', '=', 0]])->get();
         $txt = null;
         foreach ($gameKeys as $gameKey) {
@@ -37,7 +38,7 @@ class DownloadsController extends Controller
             ->withHeaders([
                 'Content-Type' => 'text/plain',
                 'Cache-Control' => 'no-store, no-cache',
-                'Content-Disposition' => 'attachment; filename="keys.txt',
+                'Content-Disposition' => 'attachment; filename="' . $game->name . '.txt',
             ]);
     }
 
@@ -47,6 +48,7 @@ class DownloadsController extends Controller
      */
     public function download_codes(Request $request)
     {
+        $game = Game::find($request->game);
         $gameKeys = Game::find($request->game)->game_key($request->quantity)->pluck('key');
         $txt = null;
         foreach ($gameKeys as $gameKey) {
@@ -57,7 +59,7 @@ class DownloadsController extends Controller
             ->withHeaders([
                 'Content-Type' => 'text/plain',
                 'Cache-Control' => 'no-store, no-cache',
-                'Content-Disposition' => 'attachment; filename="keys.txt',
+                'Content-Disposition' => 'attachment; filename="' . $game->name . '.txt',
             ]);
     }
 
@@ -67,17 +69,18 @@ class DownloadsController extends Controller
      */
     public function download_emails(Request $request)
     {
+        $bundle = Bundle::find($request->bundle);
         $emails = Purchase::select('email')->where([['bundle_id', '=', $request->bundle]])->distinct()->get();
         $txt = null;
         foreach ($emails as $email) {
             $txt .= $email->email;
-            $txt .= "\r\n";
+            $txt .= ";";
         }
         return response($txt)
             ->withHeaders([
                 'Content-Type' => 'text/plain',
                 'Cache-Control' => 'no-store, no-cache',
-                'Content-Disposition' => 'attachment; filename="emails.txt',
+                'Content-Disposition' => 'attachment; filename="' . $bundle->name . '-emails.txt',
             ]);
     }
 }
