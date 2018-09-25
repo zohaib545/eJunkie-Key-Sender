@@ -59,7 +59,7 @@ class DownloadsController extends Controller
             ->withHeaders([
                 'Content-Type' => 'text/plain',
                 'Cache-Control' => 'no-store, no-cache',
-                'Content-Disposition' => 'attachment; filename="' . $game->name . '.txt',
+                'Content-Disposition' => 'attachment; filename="' . $game->name . '-download.txt',
             ]);
     }
 
