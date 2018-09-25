@@ -74,13 +74,13 @@ class DownloadsController extends Controller
         $txt = null;
         foreach ($emails as $email) {
             $txt .= $email->email;
-            $txt .= ";";
+            $txt .= "\r\n";
         }
         return response($txt)
             ->withHeaders([
                 'Content-Type' => 'text/plain',
                 'Cache-Control' => 'no-store, no-cache',
-                'Content-Disposition' => 'attachment; filename="' . $bundle->name . '-emails.txt',
+                'Content-Disposition' => 'attachment; filename="' . $bundle->name . '-emails.csv',
             ]);
     }
 }
