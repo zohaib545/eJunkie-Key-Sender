@@ -10,6 +10,7 @@ class Bundle extends Model
         parent::boot();
         static::deleting(function($bundle) {
             $bundle->bundle_games()->delete();
+            $bundle->packages()->delete();
         });
     }
 
@@ -19,5 +20,9 @@ class Bundle extends Model
 
     public function games(){
         return $this->belongsToMany('App\Game', 'bundle_games');
+    }
+
+    public function packages(){
+        return $this->hasMany('App\Package');
     }
 }
