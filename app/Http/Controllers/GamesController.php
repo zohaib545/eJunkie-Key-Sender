@@ -13,7 +13,7 @@ class GamesController extends Controller
      */
     public function index()
     {
-        $games = Game::with(['keys', 'unused_keys'])->get();
+        $games = Game::with(['keys_count', 'unused_keys_count'])->get();
         return view('pages.games.index')->with(['games' => $games]);
     }
 

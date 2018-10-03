@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use DB;
+use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
@@ -30,6 +30,17 @@ class Game extends Model
     public function unused_keys()
     {
         return $this->keys()->where('is_used', false);
+    }
+
+    public function keys_count()
+    {
+        return $this->hasOne('App\GameKey')
+            ->selectRaw('game_id, count(*) as count')->groupBy('game_id');;
+    }
+
+    public function unused_keys_count()
+    {
+        return $this->keys_count()->where('is_used', false);
     }
 
     public function game_key($qty = 1)
