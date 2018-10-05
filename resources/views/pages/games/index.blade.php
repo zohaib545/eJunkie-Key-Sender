@@ -40,8 +40,8 @@
                 @foreach($games as $game_key => $game)
                 <tr>
                     <td>{{$game->name}}</td>
-                    <td>{{$game->keys_count->count}}</td>
-                    <td>{{$game->unused_keys_count->count}}</td>
+                    <td>{{$game->keys_count != null? $game->keys_count->count: 0}}</td>
+                    <td>{{$game->unused_keys_count != null? $game->unused_keys_count->count: 0}}</td>
                     <td>{{$game->created_at}}</td>
                     <td class="fit">
                         <a href="{{url('games/'.$game->id.'/keys')}}" class="btn btn-primary">Manage Keys</a>
